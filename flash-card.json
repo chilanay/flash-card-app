@@ -1,3 +1,25 @@
 {
-    "questions": []
+    "cards": [
+        {
+            "id": 1,
+            "front": "What is the capital of France?",
+            "back": "The capital of France is Paris.",
+            "last_modified": "2023-12-19T12:30:00",
+            "status": "Learned"
+        },
+        {
+            "id": 2,
+            "front": "Who wrote 'Romeo and Juliet'?",
+            "back": "William Shakespeare wrote 'Romeo and Juliet'.",
+            "last_modified": "2023-12-19T14:45:00",
+            "status": "Want to Learn"
+        },
+        {
+            "id": 3,
+            "front": "What is the formula for the area of a circle?",
+            "back": "The formula for the area of a circle is A = πr^2.",
+            "last_modified": "2023-12-19T16:20:00",
+            "status": "Noted"
+        }
+    ]
 }
