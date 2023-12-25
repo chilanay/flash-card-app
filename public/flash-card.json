@@ -1,0 +1,43 @@
+{
+    "cards": [
+      {
+        "id": 1,
+        "front": {
+          "text": "What is the capital of France?",
+          "image": "paris_image.jpg"
+        },
+        "back": {
+          "text": "The capital of France is Paris.",
+          "information": "Known for its iconic Eiffel Tower and rich history.",
+          "lastModification": "2023-12-25T10:30:00",
+          "status": "Learned"
+        }
+      },
+      {
+        "id": 2,
+        "front": {
+          "text": "Who painted the Mona Lisa?",
+          "image": "mona_lisa_image.jpg"
+        },
+        "back": {
+          "text": "The Mona Lisa was painted by Leonardo da Vinci.",
+          "information": "Created during the Renaissance period.",
+          "lastModification": "2023-12-25T11:15:00",
+          "status": "Want to Learn"
+        }
+      },
+      {
+        "id": 3,
+        "front": {
+          "text": "What is the powerhouse of the cell?",
+          "image": null
+        },
+        "back": {
+          "text": "The powerhouse of the cell is the mitochondria.",
+          "information": "Responsible for energy production (ATP).",
+          "lastModification": "2023-12-25T12:00:00",
+          "status": "Noted"
+        }
+      }
+    ]
+  }  
