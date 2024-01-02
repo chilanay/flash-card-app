@@ -1,0 +1,64 @@
+{
+  "flash-cards": [
+    {
+      "id": 1,
+      "question": "What is the difference between HTTP and HTTPS?",
+      "answer": "HTTPS (Hypertext Transfer Protocol Secure) is a secure version of HTTP, where the data is encrypted between the user's browser and the server, providing a more secure communication.",
+      "lastModificationDateTime": "2024-01-02T12:30:00Z"
+    },
+    {
+      "id": 2,
+      "question": "What is the purpose of responsive web design?",
+      "answer": "Responsive web design aims to make web pages render well on various devices and window or screen sizes, ensuring a consistent and optimal user experience.",
+      "lastModificationDateTime": "2024-01-02T14:45:00Z"
+    },
+    {
+      "id": 3,
+      "question": "Which programming languages are commonly used for mobile app development?",
+      "answer": "Common programming languages for mobile app development include Java and Kotlin for Android, and Swift and Objective-C for iOS.",
+      "lastModificationDateTime": "2024-01-02T16:20:00Z"
+    },
+    {
+      "id": 4,
+      "question": "What is a RESTful API?",
+      "answer": "RESTful (Representational State Transfer) API is an architectural style for designing networked applications. It uses standard HTTP methods for communication and is commonly used in web services.",
+      "lastModificationDateTime": "2024-01-02T18:10:00Z"
+    },
+    {
+      "id": 5,
+      "question": "What is the significance of the 'viewport' meta tag in HTML?",
+      "answer": "The 'viewport' meta tag in HTML is used to control the viewport's size and scale on different devices, helping in creating responsive web pages.",
+      "lastModificationDateTime": "2024-01-02T20:05:00Z"
+    },
+    {
+      "id": 6,
+      "question": "What is the purpose of CSS media queries?",
+      "answer": "CSS media queries allow developers to apply different styles based on the characteristics of the device, such as screen size, resolution, and orientation.",
+      "lastModificationDateTime": "2024-01-02T22:15:00Z"
+    },
+    {
+      "id": 7,
+      "question": "What is the difference between mobile web apps and native apps?",
+      "answer": "Mobile web apps are accessed through a web browser, while native apps are developed for specific platforms (iOS, Android) and are installed on the device.",
+      "lastModificationDateTime": "2024-01-02T23:45:00Z"
+    },
+    {
+      "id": 8,
+      "question": "Explain the concept of 'responsive images' in web development.",
+      "answer": "Responsive images in web development refer to using images that can adapt to different screen sizes, ensuring optimal display and performance across devices.",
+      "lastModificationDateTime": "2024-01-03T01:20:00Z"
+    },
+    {
+      "id": 9,
+      "question": "What is the role of JavaScript in web development?",
+      "answer": "JavaScript is a scripting language that adds interactivity and dynamic content to web pages, enhancing the user experience by enabling client-side scripting.",
+      "lastModificationDateTime": "2024-01-03T03:30:00Z"
+    },
+    {
+      "id": 10,
+      "question": "What is the purpose of a mobile app's 'splash screen'?",
+      "answer": "A splash screen is a visual introduction displayed when a mobile app is launched. It provides users with a brief loading indication and brand identity.",
+      "lastModificationDateTime": "2024-01-03T05:15:00Z"
+    }
+  ]
+}
