@@ -8,7 +8,7 @@ function Navbar() {
       <div className='navdetails'>
         <NavLink to='/home' className="navpart">Home</NavLink>
         <NavLink to='/flash-cards' className="navpart">Flash Cards</NavLink>
-        {/* <NavLink to='/contact' className="page">Contact Me</NavLink> */}
+        <NavLink to='/contact-page' className="navpart">Contact Me</NavLink>
       </div>
     </div>
   );

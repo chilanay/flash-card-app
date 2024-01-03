@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Home from './home.jsx'
 import FlashCard from './flash-cards.jsx'
-// import Contact from './Contact.jsx'
+import ContactPage from './contact-page.jsx'
 
 function App() {
   return (
@@ -13,30 +13,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/flash-cards" element={<FlashCard />} />
-
-          {/* <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/contact-page" element={<ContactPage />} />
         </Routes>
       </Router>
     </div>
   );
-
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <img src={logo} className="App-logo" alt="logo" />
-  //       <p>
-  //         Edit <code>src/App.js</code> and save to reload.
-  //       </p>
-  //       <a
-  //         className="App-link"
-  //         href="https://reactjs.org"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         Learn React
-  //       </a>
-  //     </header>
-  //   </div>
-  // );
 }
 
 export default App;
