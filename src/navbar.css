@@ -1,0 +1,27 @@
+.pages {
+  background-color: #A25772;
+  width: 100%;
+  padding: 25px;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.page {
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  float: left;
+  width: 33%;
+  border-left: 1px solid white;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.page:hover {
+  color: rgb(253, 220, 237)
+}

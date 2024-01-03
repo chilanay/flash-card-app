@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 const FlashCard = () => {
-  const [flashCards, setFlashCards] = useState([]);
+  const [flashcards, setFlashcards] = useState([]);
 
   useEffect(() => {
-    // Fetch data from flash-card.json
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/flash-cards');
-        // const response = await fetch('flash-card.json');
+        const response = await fetch('http://localhost:5000/flash-cards'); // Replace with the correct path to your JSON file
         const data = await response.json();
-        setFlashCards(data.flashCards);
+        setFlashcards(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -21,19 +19,18 @@ const FlashCard = () => {
 
   return (
     <div>
-      <h1>Flash Cards</h1>
-      {flashCards.map((card) => (
-        <div key={card.id} className="flash-card">
-          <div className="front">
-            <h3>{card.question}</h3>
-            <p>Last Modified: {card.lastModificationDateTime}</p>
+      {flashcards ? (
+        flashcards.map((flashcard) => (
+          <div key={flashcard.id} className="flashcard">
+            <h3>Question:</h3>
+            <p>{flashcard.question}</p>
+            <h3>Answer:</h3>
+            <p>{flashcard.answer}</p>
           </div>
-          <div className="back">
-            <p>{card.answer}</p>
-            <p>Status: {card.status}</p>
-          </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
