@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import './edit-card.css';
 
+// EditCard Component: Allows editing of flashcard details
 const EditCard = ({ flashcard, onSave, onCancel }) => {
+  // State for edited question, answer, and status
   const [editedQuestion, setEditedQuestion] = useState(flashcard.question);
   const [editedAnswer, setEditedAnswer] = useState(flashcard.answer);
   const [editedStatus, setEditedStatus] = useState(flashcard.status);
 
+  // Handler for saving changes
   const handleSave = () => {
+    // Call onSave prop with updated flashcard details
     onSave({
       ...flashcard,
       question: editedQuestion,
@@ -16,10 +20,12 @@ const EditCard = ({ flashcard, onSave, onCancel }) => {
     });
   };
 
+  // JSX for rendering the component
   return (
     <div className="edit-popup">
       <div className="edit-container">
         <h2>Edit Card</h2>
+        {/* Input for editing the question */}
         <label>
           Question:
           <textarea
@@ -28,6 +34,7 @@ const EditCard = ({ flashcard, onSave, onCancel }) => {
             onChange={(e) => setEditedQuestion(e.target.value)}
           />
         </label>
+        {/* Input for editing the answer */}
         <label>
           Answer:
           <textarea
@@ -36,6 +43,7 @@ const EditCard = ({ flashcard, onSave, onCancel }) => {
             onChange={(e) => setEditedAnswer(e.target.value)}
           />
         </label>
+        {/* Input for editing the status */}
         <label>
           Status:
           <input
@@ -44,6 +52,7 @@ const EditCard = ({ flashcard, onSave, onCancel }) => {
             onChange={(e) => setEditedStatus(e.target.value)}
           />
         </label>
+        {/* Buttons for saving and canceling changes */}
         <div className="edit-buttons">
           <button onClick={handleSave}>Save</button>
           <button onClick={onCancel}>Cancel</button>

@@ -1,21 +1,30 @@
+// Import necessary React components and hooks
 import React, { useState, useEffect } from 'react';
+
+// Import CSS files for styling
 import './flash-cards.css';
 import './edit-card.css';
+
+// Import the Navbar and EditCard components
 import Navbar from './navbar.jsx';
 import EditCard from './edit-card.jsx';
 
+// Define the FlashCard functional component
 const FlashCard = () => {
-  const [flashcards, setFlashcards] = useState([]);
-  const [editingCard, setEditingCard] = useState(null);
-  const [showCreateForm, setShowCreateForm] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [statusFilter, setStatusFilter] = useState('');
-  const [sortOption, setSortOption] = useState('default');
+  // State variables using the useState hook
+  const [flashcards, setFlashcards] = useState([]); // Store flashcards data
+  const [editingCard, setEditingCard] = useState(null); // Track the index of the card being edited
+  const [showCreateForm, setShowCreateForm] = useState(false); // Toggle display of the create card form
+  const [searchTerm, setSearchTerm] = useState(''); // Store the search term for filtering
+  const [searchResults, setSearchResults] = useState([]); // Store filtered search results
+  const [statusFilter, setStatusFilter] = useState(''); // Store the selected status filter
+  const [sortOption, setSortOption] = useState('default'); // Store the selected sorting option
 
+  // useEffect hook to fetch data from the server when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Make a GET request to fetch flashcards data from the server
         const response = await fetch('http://localhost:5000/flash-cards');
         const data = await response.json();
 
@@ -24,15 +33,18 @@ const FlashCard = () => {
           .map((card) => ({ ...card, visibleSide: 'front' }))
           .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
 
+        // Update the state with the sorted flashcards data
         setFlashcards(sortedData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
+    // Call the fetchData function when the component mounts
     fetchData();
   }, []);
 
+  // Function to handle click events on flashcards to toggle visible side (front/back)
   const handleCardClick = (index) => {
     setFlashcards((prevCards) =>
       prevCards.map((card, i) =>
@@ -41,24 +53,30 @@ const FlashCard = () => {
     );
   };
 
+  // Function to handle click events on the "Edit" button of a flashcard
   const handleEditClick = (index) => {
     setEditingCard(index);
   };
 
+  // Function to handle click events on the "Delete" button of a flashcard
   const handleDeleteClick = async (id) => {
     try {
+      // Make a DELETE request to delete the selected flashcard from the server
       await fetch(`http://localhost:5000/flash-cards/${id}`, {
         method: 'DELETE',
       });
+
+      // Update the state by removing the deleted card
       setFlashcards((prevCards) => prevCards.filter((card) => card.id !== id));
     } catch (error) {
       console.error('Error deleting card:', error);
     }
   };
 
+  // Function to handle saving edits to a flashcard
   const handleSaveEdit = async (editedCard) => {
     try {
-      // Make PUT request to update the edited card
+      // Make a PUT request to update the edited flashcard on the server
       const response = await fetch(`http://localhost:5000/flash-cards/${editedCard.id}`, {
         method: 'PUT',
         headers: {
@@ -80,6 +98,7 @@ const FlashCard = () => {
           return sortedUpdatedCards;
         });
 
+        // Reset the editingCard state to null
         setEditingCard(null);
       } else {
         console.error('Error updating card:', response.statusText);
@@ -89,21 +108,25 @@ const FlashCard = () => {
     }
   };
 
+  // Function to handle canceling the edit mode
   const handleCancelEdit = () => {
     setEditingCard(null);
   };
 
+  // Function to show the create card form
   const handleShowCreateForm = () => {
     setShowCreateForm(true);
   };
 
+  // Function to hide the create card form
   const handleHideCreateForm = () => {
     setShowCreateForm(false);
   };
 
+  // Function to handle creating a new flashcard
   const handleCreateCard = async (newCard) => {
     try {
-      // Make POST request to create a new card
+      // Make a POST request to create a new flashcard on the server
       const response = await fetch('http://localhost:5000/flash-cards', {
         method: 'POST',
         headers: {
@@ -113,6 +136,7 @@ const FlashCard = () => {
       });
 
       if (response.ok) {
+        // Get the newly created card from the server response
         const createdCard = await response.json();
 
         // Update the state with the newly created card at the top
@@ -121,6 +145,7 @@ const FlashCard = () => {
           ...prevCards,
         ]);
 
+        // Hide the create card form
         setShowCreateForm(false);
       } else {
         console.error('Error creating card:', response.statusText);
@@ -130,6 +155,7 @@ const FlashCard = () => {
     }
   };
 
+  // Function to handle search based on the current search term and status filter
   const handleSearch = () => {
     // Filter flashcards based on search term and status filter
     const filteredResults = flashcards.filter((card) => {
@@ -137,6 +163,7 @@ const FlashCard = () => {
       const normalizedSearchTerm = searchTerm.toLowerCase().trim();
       const normalizedStatusFilter = statusFilter.toLowerCase().trim();
 
+      // Check if the card matches the search term and status filter
       const matchSearchTerm =
         question.toLowerCase().includes(normalizedSearchTerm) ||
         answer.toLowerCase().includes(normalizedSearchTerm) ||
@@ -163,11 +190,13 @@ const FlashCard = () => {
     setSearchResults(sortedResults);
   };
 
+  // Function to handle sorting flashcards based on the selected option
   const handleSort = (option) => {
     setSortOption(option);
     handleSearch();
   };
 
+  // Function to sort flashcards based on the selected option
   const sortFlashcards = (cards, option) => {
     switch (option) {
       case 'date':
@@ -181,11 +210,15 @@ const FlashCard = () => {
     }
   };
 
+  // JSX structure for rendering the FlashCard component
   return (
     <>
+      {/* Render the Navbar component */}
       <Navbar />
 
+      {/* Flashcard container with search, filter, sort, and create card functionality */}
       <div className="flashcard-container">
+        {/* Search input and button */}
         <div className="search-container">
           <input
             type="text"
@@ -198,11 +231,14 @@ const FlashCard = () => {
           </button>
         </div>
 
+        {/* Status filter dropdown and button */}
         <div className="status-filter-container">
           <label htmlFor="status-filter">Filter:</label>
           <select
             id="status-filter"
-            onChange={(e) => { setStatusFilter(e.target.value); }}
+            onChange={(e) => {
+              setStatusFilter(e.target.value);
+            }}
             value={statusFilter}
           >
             <option value="">All</option>
@@ -215,13 +251,10 @@ const FlashCard = () => {
           </button>
         </div>
 
+        {/* Sort options dropdown and button */}
         <div className="sort-options-container">
           <label htmlFor="sort-select">Sort by:</label>
-          <select
-            id="sort-select"
-            onChange={(e) => handleSort(e.target.value)}
-            value={sortOption}
-          >
+          <select id="sort-select" onChange={(e) => handleSort(e.target.value)} value={sortOption}>
             <option value="default">Default</option>
             <option value="date">Date</option>
             <option value="question">Question</option>
@@ -231,10 +264,12 @@ const FlashCard = () => {
           </button>
         </div>
 
+        {/* Create new flashcard button */}
         <div className="create-button-container">
           <button onClick={handleShowCreateForm}>Create New Flashcard</button>
         </div>
 
+        {/* Create card form */}
         {showCreateForm && (
           <EditCard
             flashcard={{
@@ -248,19 +283,24 @@ const FlashCard = () => {
           />
         )}
 
+        {/* Display flashcards or search results */}
         {searchResults.length > 0 ? (
+          // Render search results
           searchResults.map((flashcard, index) => (
             <div key={flashcard.id} className="flashcard" onClick={() => handleCardClick(index)}>
               <div className="card">
                 {editingCard === index ? (
+                  // Render edit form if editingCard state matches the current index
                   <EditCard
                     flashcard={flashcard}
                     onSave={handleSaveEdit}
                     onCancel={handleCancelEdit}
                   />
                 ) : (
+                  // Render flashcard details if not in edit mode
                   <>
                     {flashcard.visibleSide === 'front' ? (
+                      // Render question side
                       <>
                         <div className="question">
                           <h3>Question:</h3>
@@ -272,6 +312,7 @@ const FlashCard = () => {
                         </div>
                       </>
                     ) : (
+                      // Render answer side
                       <>
                         <div className="answer">
                           <h3>Answer:</h3>
@@ -283,6 +324,7 @@ const FlashCard = () => {
                         </div>
                       </>
                     )}
+                    {/* Buttons for Edit and Delete actions */}
                     <div className="buttons-container">
                       <div className="buttons">
                         <button onClick={() => handleEditClick(index)}>Edit</button>
@@ -295,18 +337,22 @@ const FlashCard = () => {
             </div>
           ))
         ) : (
+          // Render all flashcards if no search results
           flashcards.map((flashcard, index) => (
             <div key={flashcard.id} className="flashcard" onClick={() => handleCardClick(index)}>
               <div className="card">
                 {editingCard === index ? (
+                  // Render edit form if editingCard state matches the current index
                   <EditCard
                     flashcard={flashcard}
                     onSave={handleSaveEdit}
                     onCancel={handleCancelEdit}
                   />
                 ) : (
+                  // Render flashcard details if not in edit mode
                   <>
                     {flashcard.visibleSide === 'front' ? (
+                      // Render question side
                       <>
                         <div className="question">
                           <h3>Question:</h3>
@@ -318,6 +364,7 @@ const FlashCard = () => {
                         </div>
                       </>
                     ) : (
+                      // Render answer side
                       <>
                         <div className="answer">
                           <h3>Answer:</h3>
@@ -329,6 +376,7 @@ const FlashCard = () => {
                         </div>
                       </>
                     )}
+                    {/* Buttons for Edit and Delete actions */}
                     <div className="buttons-container">
                       <div className="buttons">
                         <button onClick={() => handleEditClick(index)}>Edit</button>
@@ -346,4 +394,5 @@ const FlashCard = () => {
   );
 };
 
+// Export the FlashCard component as the default export
 export default FlashCard;
