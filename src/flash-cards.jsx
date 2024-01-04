@@ -133,13 +133,11 @@ const FlashCard = () => {
   
 
   const handleSearch = () => {
-    console.log('handleSearch function invoked!');
-  
     // Filter flashcards based on search term and status filter
     const filteredResults = flashcards.filter((card) => {
       const { question, answer, lastModified, status } = card;
       const normalizedSearchTerm = searchTerm.toLowerCase().trim();
-      const normalizedStatusFilter = statusFilter.toLowerCase().trim(); // Trim spaces
+      const normalizedStatusFilter = statusFilter.toLowerCase().trim();
   
       const matchSearchTerm =
         question.toLowerCase().includes(normalizedSearchTerm) ||
@@ -154,16 +152,16 @@ const FlashCard = () => {
       return matchSearchTerm && matchStatusFilter;
     });
   
-    console.log('filteredResults:', filteredResults);
+    // Map over the filtered results and set the visibleSide property
+const resultsWithVisibleSide = filteredResults.map((card) => ({ ...card, visibleSide: card.visibleSide || 'front' }));
   
     // Sort the filtered results based on the selected sort option
-    const sortedResults = sortFlashcards(filteredResults, sortOption);
-  
-    console.log('sortedResults:', sortedResults);
+    const sortedResults = sortFlashcards(resultsWithVisibleSide, sortOption);
   
     // Update the state with the sorted and filtered results
     setSearchResults(sortedResults);
   };
+  
   
 
 
