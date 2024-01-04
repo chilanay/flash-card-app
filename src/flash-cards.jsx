@@ -152,8 +152,11 @@ const FlashCard = () => {
       return matchSearchTerm && matchStatusFilter;
     });
   
-    // Map over the filtered results and set the visibleSide property
-const resultsWithVisibleSide = filteredResults.map((card) => ({ ...card, visibleSide: card.visibleSide || 'front' }));
+    // Update the visibleSide property in the filteredResults based on the existing state
+    const resultsWithVisibleSide = filteredResults.map((card) => {
+      const existingCard = flashcards.find((c) => c.id === card.id);
+      return { ...card, visibleSide: existingCard ? existingCard.visibleSide : 'front' };
+    });
   
     // Sort the filtered results based on the selected sort option
     const sortedResults = sortFlashcards(resultsWithVisibleSide, sortOption);
@@ -161,6 +164,7 @@ const resultsWithVisibleSide = filteredResults.map((card) => ({ ...card, visible
     // Update the state with the sorted and filtered results
     setSearchResults(sortedResults);
   };
+  
   
   
 
