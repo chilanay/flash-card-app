@@ -8,6 +8,15 @@
       margin-top: 50px;
   }
 
+  .flashcard .buttons {
+      display: none;
+  }
+
+  .flashcard:hover .buttons {
+      display: flex;
+  }
+
+
   .search-container {
       display: flex;
       gap: 10px;

@@ -63,14 +63,6 @@
       "status": "Learned",
       "lastModified": "1/3/2024, 11:59:08 PM",
       "id": 12
-    },
-    {
-      "question": "what happened to you?",
-      "answer": "i dunno did smth happen?",
-      "status": "Noted",
-      "lastModified": "1/4/2024, 3:57:16 AM",
-      "id": 13,
-      "visibleSide": "front"
     }
   ],
   "messages": [

@@ -283,9 +283,11 @@ const FlashCard = () => {
                         </div>
                       </>
                     )}
-                    <div className="buttons">
-                      <button onClick={() => handleEditClick(index)}>Edit</button>
-                      <button onClick={() => handleDeleteClick(flashcard.id)}>Delete</button>
+                    <div className="buttons-container">
+                      <div className="buttons">
+                        <button onClick={() => handleEditClick(index)}>Edit</button>
+                        <button onClick={() => handleDeleteClick(flashcard.id)}>Delete</button>
+                      </div>
                     </div>
                   </>
                 )}
@@ -327,9 +329,11 @@ const FlashCard = () => {
                         </div>
                       </>
                     )}
-                    <div className="buttons">
-                      <button onClick={() => handleEditClick(index)}>Edit</button>
-                      <button onClick={() => handleDeleteClick(flashcard.id)}>Delete</button>
+                    <div className="buttons-container">
+                      <div className="buttons">
+                        <button onClick={() => handleEditClick(index)}>Edit</button>
+                        <button onClick={() => handleDeleteClick(flashcard.id)}>Delete</button>
+                      </div>
                     </div>
                   </>
                 )}
