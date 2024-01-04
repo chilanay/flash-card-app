@@ -1,10 +1,4 @@
-// Importing necessary dependencies from the 'react' library
-import React, { useEffect, useState } from 'react';
-
-// Importing the CSS file for styling
 import './home.css';
-
-// Importing the Navbar component from the './navbar.jsx' file
 import Navbar from './navbar.jsx';
 
 // Functional component representing the Home page

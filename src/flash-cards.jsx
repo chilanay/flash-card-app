@@ -1,4 +1,3 @@
-// Import necessary React components and hooks
 import React, { useState, useEffect } from 'react';
 
 // Import CSS files for styling
