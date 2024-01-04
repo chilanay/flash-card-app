@@ -6,20 +6,6 @@ function Home() {
     return (
         <>
             <Navbar />
-
-            {/* <div id="navbar" class="nav-links">
-                <a id="navhome" href="home.html">Home</a>
-                <a class="navother" href="public\contactme.html">Flash Cards</a>
-                <a class="navother" href="public\questionnaire.html">Contact Me</a>
-            </div>
-
-
-            <nav>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="flash-cards.html">Flash Cards</a></li>
-                <li><a href="#"></a></li>
-            </nav> */}
-
             <header>
                 <h1>My Portfolio</h1>
             </header>

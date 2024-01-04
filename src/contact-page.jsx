@@ -1,4 +1,3 @@
-// ContactPage.jsx
 import React, { useState } from 'react';
 import Navbar from './navbar.jsx';
 import './contact-page.css';
@@ -11,7 +10,6 @@ const ContactPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Prepare the message data in JSON format
         const messageData = {
             subject,
             email,
@@ -19,7 +17,6 @@ const ContactPage = () => {
         };
 
         try {
-            // Send a POST request to store the message
             const response = await fetch('http://localhost:5000/messages', {
                 method: 'POST',
                 headers: {
@@ -30,14 +27,11 @@ const ContactPage = () => {
 
             if (response.ok) {
                 console.log('Message sent successfully:', messageData);
-                // You can add additional logic here if needed
             } else {
                 console.error('Error sending message:', response.statusText);
-                // Handle the error appropriately
             }
         } catch (error) {
             console.error('Error sending message:', error.message);
-            // Handle the error appropriately
         }
     };
 

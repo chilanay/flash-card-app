@@ -1,4 +1,3 @@
-// flash-cards.jsx
 import React, { useState, useEffect } from 'react';
 import './flash-cards.css';
 import './edit-card.css';
@@ -112,16 +111,16 @@ const FlashCard = () => {
         },
         body: JSON.stringify(newCard),
       });
-  
+
       if (response.ok) {
         const createdCard = await response.json();
-  
+
         // Update the state with the newly created card at the top
         setFlashcards((prevCards) => [
           { ...createdCard, visibleSide: 'front' },
           ...prevCards,
         ]);
-  
+
         setShowCreateForm(false);
       } else {
         console.error('Error creating card:', response.statusText);
@@ -130,7 +129,6 @@ const FlashCard = () => {
       console.error('Error creating card:', error);
     }
   };
-  
 
   const handleSearch = () => {
     // Filter flashcards based on search term and status filter
@@ -138,40 +136,36 @@ const FlashCard = () => {
       const { question, answer, lastModified, status } = card;
       const normalizedSearchTerm = searchTerm.toLowerCase().trim();
       const normalizedStatusFilter = statusFilter.toLowerCase().trim();
-  
+
       const matchSearchTerm =
         question.toLowerCase().includes(normalizedSearchTerm) ||
         answer.toLowerCase().includes(normalizedSearchTerm) ||
         lastModified.toLowerCase().includes(normalizedSearchTerm);
-  
+
       const matchStatusFilter =
         statusFilter === '' ||
         (normalizedStatusFilter === 'wanttolearn' && status.toLowerCase().includes('want to learn')) ||
         status.toLowerCase().includes(normalizedStatusFilter);
-  
+
       return matchSearchTerm && matchStatusFilter;
     });
-  
+
     // Update the visibleSide property in the filteredResults based on the existing state
     const resultsWithVisibleSide = filteredResults.map((card) => {
       const existingCard = flashcards.find((c) => c.id === card.id);
       return { ...card, visibleSide: existingCard ? existingCard.visibleSide : 'front' };
     });
-  
+
     // Sort the filtered results based on the selected sort option
     const sortedResults = sortFlashcards(resultsWithVisibleSide, sortOption);
-  
+
     // Update the state with the sorted and filtered results
     setSearchResults(sortedResults);
   };
-  
-  
-  
-
 
   const handleSort = (option) => {
     setSortOption(option);
-    handleSearch(); // Re-run the search to apply sorting
+    handleSearch();
   };
 
   const sortFlashcards = (cards, option) => {
@@ -183,10 +177,9 @@ const FlashCard = () => {
         return cards.slice().sort((a, b) => a.question.localeCompare(b.question));
 
       default:
-        return cards; // Default is no sorting
+        return cards;
     }
   };
-
 
   return (
     <>

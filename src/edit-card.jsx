@@ -1,4 +1,3 @@
-// EditCard.jsx
 import React, { useState } from 'react';
 import './edit-card.css';
 
@@ -13,7 +12,7 @@ const EditCard = ({ flashcard, onSave, onCancel }) => {
       question: editedQuestion,
       answer: editedAnswer,
       status: editedStatus,
-      lastModified: new Date().toLocaleString(), // Update the lastModified timestamp
+      lastModified: new Date().toLocaleString(),
     });
   };
 

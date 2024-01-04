@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import './styles/App.css';
 import React from 'react';
 import Home from './home.jsx'
 import FlashCard from './flash-cards.jsx'
