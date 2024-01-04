@@ -112,16 +112,16 @@ const FlashCard = () => {
         },
         body: JSON.stringify(newCard),
       });
-
+  
       if (response.ok) {
         const createdCard = await response.json();
-
+  
         // Update the state with the newly created card at the top
         setFlashcards((prevCards) => [
           { ...createdCard, visibleSide: 'front' },
           ...prevCards,
         ]);
-
+  
         setShowCreateForm(false);
       } else {
         console.error('Error creating card:', response.statusText);
@@ -130,36 +130,41 @@ const FlashCard = () => {
       console.error('Error creating card:', error);
     }
   };
+  
 
   const handleSearch = () => {
     console.log('handleSearch function invoked!');
-
+  
     // Filter flashcards based on search term and status filter
     const filteredResults = flashcards.filter((card) => {
       const { question, answer, lastModified, status } = card;
-      const normalizedSearchTerm = searchTerm.toLowerCase();
-      const normalizedStatusFilter = statusFilter.toLowerCase();
-
+      const normalizedSearchTerm = searchTerm.toLowerCase().trim();
+      const normalizedStatusFilter = statusFilter.toLowerCase().trim(); // Trim spaces
+  
       const matchSearchTerm =
         question.toLowerCase().includes(normalizedSearchTerm) ||
         answer.toLowerCase().includes(normalizedSearchTerm) ||
-        lastModified.toLowerCase().includes(normalizedSearchTerm) ||
-        status.toLowerCase().includes(normalizedSearchTerm);
-
-      const matchStatusFilter = statusFilter === '' || status.toLowerCase() === normalizedStatusFilter;
+        lastModified.toLowerCase().includes(normalizedSearchTerm);
+  
+      const matchStatusFilter =
+        statusFilter === '' ||
+        (normalizedStatusFilter === 'wanttolearn' && status.toLowerCase().includes('want to learn')) ||
+        status.toLowerCase().includes(normalizedStatusFilter);
+  
       return matchSearchTerm && matchStatusFilter;
     });
-
+  
     console.log('filteredResults:', filteredResults);
-
+  
     // Sort the filtered results based on the selected sort option
     const sortedResults = sortFlashcards(filteredResults, sortOption);
-
+  
     console.log('sortedResults:', sortedResults);
-
+  
     // Update the state with the sorted and filtered results
     setSearchResults(sortedResults);
   };
+  
 
 
   const handleSort = (option) => {
